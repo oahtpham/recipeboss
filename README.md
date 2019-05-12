@@ -22,6 +22,9 @@ If you have any questions, don't hesitate to ask! Keep it simple, I don't expect
 2. Add a way for a user to delete a recipe they no longer want to track.
 3. Using your favorite image api, give the user the ability to search for an image for their recipe. Don't have a favorite? Check out Unsplash, Pixabay, Bing, Giphy, or good ol' Google.
 
+## Bonus
+
+1. Think of another cool feature to add? Want to play with the design? Feel free to play and show off! No pressure though!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
