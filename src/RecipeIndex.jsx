@@ -3,7 +3,11 @@ import RecipeCard from './RecipeCard'
 
 const RecipeIndex = ({recipes, ...props}) => {
   return (
-    <div>
+    <div style={{
+        marginTop: '5%',
+        display: 'grid',
+        gridTemplateColumns: '25% 25% 25% 25%',
+        gridTemplateRows: '45% 45%'}}>
       {recipes.map((recipe, idx) => (
         <RecipeCard key={idx} {...recipe} />
       ))}

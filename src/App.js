@@ -3,6 +3,7 @@ import RecipeIndex from './RecipeIndex'
 import './App.css';
 import NavBar from './NavBar';
 import recipeData from './recipes'
+import styled from 'styled-components'
 
 function App() {
   const [recipes, setRecipes] = useState([])
