@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RecipeCard = recipe => {
+const RecipeCard = (props) => {
   return (
       <CardWrapper>
         <Image
           width="100%"
           height="50%"
-          src={recipe.image}
+          src={props.recipe.image}
           style={{ borderTopLeftRadius: '5px', borderTopRightRadius: '5px' }}
         />
-        <h3>{recipe.name}</h3>
-        <p>{recipe.description}</p>
-        <p>{recipe.instructions}</p>
-        <button> Delete Recipe </button>
+        <h3>{props.recipe.name}</h3>
+        <p>{props.recipe.description}</p>
+        <p>{props.recipe.instructions}</p>
+        <button onClick={() => props.deleteRecipe(props.recipe)}> Delete Recipe </button>
       </CardWrapper>
   )
 }
@@ -24,21 +24,15 @@ export default RecipeCard
 
 const CardWrapper = styled.div`
   background-color: white;
-  width: 100%;
-  height: 150%;
   cursor: pointer;
   position: relative;
-  border: orange solid 3px;
+  border: orange solid;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 1vw;
 `
 
 export const Image = styled.img`
   height: ${p => p.height};
   width: ${p => p.width};
   object-fit: cover;
-`
-
-const h3 = styled.h3`
-  font-size: 5vw;
 `

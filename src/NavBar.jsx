@@ -27,12 +27,9 @@ const Header = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 8% ;
+  height: 60px ;
   box-shadow: 0 0 10px 0 black;
   z-index: 1000;
-  /* background: transparent; */
-  /* background-color: #141414; */
-  /* background: linear-gradient(180deg,hsla(0,0%,8%,.9),hsla(0,0%,8%,.9) 100%,transparent); */
 `
 const HeaderMenu = styled.ul`
   margin-top: 0px;

@@ -1,16 +1,24 @@
 import React from 'react'
 import RecipeCard from './RecipeCard'
+import RecipeForm from './RecipeForm'
 
 const RecipeIndex = ({recipes, ...props}) => {
   return (
-    <div style={{
-        marginTop: '5%',
+    <div
+      style={{
+        marginTop: '65px',
         display: 'grid',
-        gridTemplateColumns: '25% 25% 25% 25%',
-        gridTemplateRows: '45% 45%'}}>
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gridAutoRows: 'minmax(200px, auto)',
+        gridColumnGap: '6px',
+        gridRowGap: '1px'}}>
       {recipes.map((recipe, idx) => (
-        <RecipeCard key={idx} {...recipe} />
+        <RecipeCard
+          deleteRecipe={props.deleteRecipe}
+          recipe={recipe}
+          key={idx} {...recipe} />
       ))}
+      <RecipeForm addRecipe={props.addRecipe}/>
     </div>
   )
 }

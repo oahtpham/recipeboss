@@ -12,10 +12,22 @@ function App() {
     setRecipes(recipeData)
   }, [])
 
+  const handleDeleteRecipe = (recipe) => {
+    const newRecipes = recipes.filter(recipeItem => recipe.name !== recipeItem.name)
+    setRecipes(newRecipes)
+  }
+
+  const handleNewRecipe = (newRecipe) => {
+    setRecipes([...recipes, newRecipe])
+  }
+
   return (
     <div className="App">
       <NavBar />
-      <RecipeIndex recipes={recipes} />
+      <RecipeIndex
+        recipes={recipes}
+        addRecipe={handleNewRecipe}
+        deleteRecipe={handleDeleteRecipe}/>
     </div>
   );
 }
