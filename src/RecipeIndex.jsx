@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import RecipeCard from './RecipeCard'
 import RecipeForm from './RecipeForm'
 
 const RecipeIndex = ({recipes, ...props}) => {
+
+
   return (
+    <React.Fragment>
     <div
       style={{
         marginTop: '65px',
@@ -18,8 +21,11 @@ const RecipeIndex = ({recipes, ...props}) => {
           recipe={recipe}
           key={idx} {...recipe} />
       ))}
+    </div><br/><br/>
+    <div>
       <RecipeForm addRecipe={props.addRecipe}/>
     </div>
+    </React.Fragment>
   )
 }
 
