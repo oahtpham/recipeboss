@@ -4,7 +4,6 @@ import RecipeForm from './RecipeForm'
 
 const RecipeIndex = ({recipes, ...props}) => {
 
-
   return (
     <React.Fragment>
     <div
@@ -12,9 +11,9 @@ const RecipeIndex = ({recipes, ...props}) => {
         marginTop: '65px',
         display: 'grid',
         gridTemplateColumns: 'repeat(5, 1fr)',
-        gridAutoRows: 'minmax(200px, auto)',
+        gridAutoRows: 'minmax(220px, auto)',
         gridColumnGap: '6px',
-        gridRowGap: '1px'}}>
+        gridRowGap: '3px'}}>
       {recipes.map((recipe, idx) => (
         <RecipeCard
           deleteRecipe={props.deleteRecipe}

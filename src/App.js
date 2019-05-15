@@ -12,6 +12,7 @@ function App() {
     setRecipes(recipeData)
   }, [])
 
+//// START OF CRUD EVENT HANDLERS ////
   const handleDeleteRecipe = (recipe) => {
     const newRecipes = recipes.filter(recipeItem => recipe.name !== recipeItem.name)
     setRecipes(newRecipes)
@@ -20,6 +21,7 @@ function App() {
   const handleNewRecipe = (newRecipe) => {
     setRecipes([...recipes, newRecipe])
   }
+//// END OF CRUD EVENT HANDLERS ////
 
   return (
     <div className="App">

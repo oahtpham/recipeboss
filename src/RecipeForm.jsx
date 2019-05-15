@@ -2,12 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import Unsplash from 'unsplash-js'
 
-const UnsplashSearch = require('unsplash-js').default;
 
-const unsplashRequest = new UnsplashSearch({
-  applicationId: `${process.env.REACT_APP_UNSPLASH_API_KEY}`,
-  secret: `${process.env.REACT_APP_UNSPLASH_SECRET_KEY}`
-});
 
 const RecipeForm = (props) => {
   const initialFormState = {name: "", description: "", instructions: "", image: "" }
@@ -16,10 +11,16 @@ const RecipeForm = (props) => {
   const [clickedImage, setClickedImage] = useState(null)
   const [showButton, setShowButton] = useState(false)
 
-  const handleShowForm = () => {
-    setShowButton(!showButton)
-  }
+//// START OF UNSPLASH API DATA ////
+  const UnsplashSearch = require('unsplash-js').default;
 
+  const unsplashRequest = new UnsplashSearch({
+    applicationId: `${process.env.REACT_APP_UNSPLASH_API_KEY}`,
+    secret: `${process.env.REACT_APP_UNSPLASH_SECRET_KEY}`
+  });
+//// END OF UNSPLASH API DATA ////
+
+//// START OF EVENT HANDLERS FOR FORM DATA ////
   const handleInputChange = event => {
     window.scrollTo(500,500)
     const { name, value } = event.target
@@ -28,7 +29,8 @@ const RecipeForm = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (!newRecipe.name || !newRecipe.description || ! newRecipe.instructions) return window.alert('Fill out all fields!');
+    //if statement below will throw an error if user has any empty fields or has not selected an image
+    if (!newRecipe.name || !newRecipe.description || ! newRecipe.instructions || !newRecipe.image) return window.alert('Please ensure all information is complete!');
     props.addRecipe(newRecipe);
     setNewRecipe(initialFormState)
     setClickedImage(null)
@@ -40,10 +42,11 @@ const RecipeForm = (props) => {
       handleSubmit(event)
     }
   }
+//// END OF EVENT HANDLERS FOR FORM DATA ////
 
-  //function sends a get request to unsplash API for photos from search keyword and results are limited to 10 photos
+//// START OF SEARCH FUNCTIONALITIES ////
   const handleSearch = (event) => {
-    unsplashRequest.search.photos(event.target.value, 1)
+    unsplashRequest.search.photos(event.target.value, 1) //get request that hits Unsplash API data
     .then(results => results.json())
     .then(results => {
       setSearchResults(results)
@@ -51,29 +54,49 @@ const RecipeForm = (props) => {
   }
 
   const searchResultsMap = (searchResults) => {
-    if (!searchResults) return;
-    return searchResults.results.map(result => {
-      if (result === clickedImage) {
-        return <img
-          key={result.id}
-          src={result.urls.small}
-          height='130px'
-          width='130px'
-          style={{border: 'orange solid'}}/>
-      } else {
-      return <img
-        key={result.id}
-        src={result.urls.small}
-        height='130px'
-        width='130px'
-        onClick={() => chosenImage(result)}/>
-      }
-    })
+
+    if (!searchResults) return; //searchResults is initialized as null, so we will return nothing on page until user searches
+    if (searchResults.results.length === 0) { //if keyword has 0 results, this notifies user that there are no results from their search
+      return (
+          <h3>No photos match your search</h3>
+      )
+    } else { //the map below renders an image tag of every photo search result. If a photo is clicked, an orange border surrounds the photo user has chosen
+      return searchResults.results.map(result => {
+        if (result === clickedImage) {
+          return (
+            <img
+              key={result.id}
+              src={result.urls.small}
+              height='130px'
+              width='130px'
+              style={{border: 'orange solid'}}/>
+          )
+        } else {
+          return (
+            <img
+              key={result.id}
+              src={result.urls.small}
+              height='130px'
+              width='130px'
+              onClick={() => chosenImage(result)}/>
+          )
+        }
+      })
+    }
   }
 
   const chosenImage = (result) => {
     setClickedImage(result)
-    setNewRecipe({...newRecipe, image: result.urls.small})
+    setNewRecipe({...newRecipe, image: result.urls.small
+  })
+
+  }
+//// END OF SEARCH FUNCTIONALITIES ////
+
+
+//// START OF ITEMS THAT RENDER ON PAGE ////
+  const handleShowForm = () => {
+    setShowButton(!showButton)
   }
 
   const button = () => {
@@ -83,7 +106,7 @@ const RecipeForm = (props) => {
       style={{
         color: 'white',
         fontSize: '16px',
-        backgroundColor: 'orange',
+        backgroundColor: '#ff9248',
         padding: '15px 32px',
         textAlign: 'center'}}> {showButton ? 'Hide Form' : 'Add a New Recipe' } </button>
     )
@@ -100,10 +123,11 @@ const RecipeForm = (props) => {
           onSubmit={handleSubmit}
           onKeyDown={handleKeyDown}>
           <label>Recipe Name:</label><br/>
-            <input
+            <textarea
               name="name"
-              type='text'
-              value={newRecipe.name}/><br/><br/>
+              rows="1"
+              cols="35"
+              value={newRecipe.name}></textarea><br/><br/>
           <label>Description:</label><br/>
             <textarea
               name="description"
@@ -119,12 +143,14 @@ const RecipeForm = (props) => {
               value={newRecipe.instructions}>
             </textarea><br/><br/>
           <label>Search Photos on Unsplash:</label><br/>
-            <input
+            <textarea
               name="image"
-              type='text'
+              row="1"
+              cols="35"
               value={newRecipe.image}
-              onChange={handleSearch}/><br/>
-              {searchResultsMap(searchResults)}<br/>
+              onChange={handleSearch}>
+            </textarea><br/>
+            {searchResultsMap(searchResults)}<br/>
           <input
             type="submit"
             value="Add"
@@ -133,6 +159,8 @@ const RecipeForm = (props) => {
         </div>
     )
   }
+
+//// END OF SEARCH FUNCTIONALITIES ////
 
   return (
     <React.Fragment>

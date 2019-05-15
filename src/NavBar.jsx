@@ -22,7 +22,7 @@ export default NavBar
 NavBar.displayName = 'NavBar'
 
 const Header = styled.header`
-  background-color: orange;
+  background-color: #ff9248;
   position: fixed;
   top: 0;
   left: 0;

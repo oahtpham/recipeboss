@@ -13,7 +13,16 @@ const RecipeCard = (props) => {
         <h3>{props.recipe.name}</h3>
         <p>{props.recipe.description}</p>
         <p>{props.recipe.instructions}</p>
-        <button onClick={() => props.deleteRecipe(props.recipe)}> Delete Recipe </button>
+        <button
+          onClick={() => props.deleteRecipe(props.recipe)}
+          style={{
+            color: '#ff9248',
+            fontSize: '12px',
+            borderColor: '#ff9248',
+            padding: '5px 5px',
+            textAlign: 'center'}}>
+          Delete Recipe
+        </button>
       </CardWrapper>
   )
 }
