@@ -4,6 +4,7 @@ import RecipeForm from './RecipeForm'
 
 const RecipeIndex = ({recipes, ...props}) => {
 
+
   return (
     <React.Fragment>
     <div
@@ -11,14 +12,19 @@ const RecipeIndex = ({recipes, ...props}) => {
         marginTop: '65px',
         display: 'grid',
         gridTemplateColumns: 'repeat(5, 1fr)',
-        gridAutoRows: 'minmax(220px, auto)',
+        gridAutoRows: 'minmax(200px, auto)',
         gridColumnGap: '6px',
-        gridRowGap: '3px'}}>
+        gridRowGap: '3px'}}
+      className='droppable'
+      onDragOver={(e) => props.dragOver(e)}
+      onDrop={(e) => props.dragDrop(e, props.dragObject)}>
       {recipes.map((recipe, idx) => (
         <RecipeCard
           deleteRecipe={props.deleteRecipe}
           recipe={recipe}
-          key={idx} {...recipe} />
+          key={idx} {...recipe}
+          dragStart={props.dragStart}
+          />
       ))}
     </div><br/><br/>
     <div>

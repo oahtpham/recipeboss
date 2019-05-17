@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 const RecipeCard = (props) => {
   return (
-      <CardWrapper>
+      <CardWrapper
+        draggable
+        onDragStart={() => props.dragStart(props.recipe)}>
         <Image
           width="100%"
           height="50%"
@@ -17,7 +19,7 @@ const RecipeCard = (props) => {
           onClick={() => props.deleteRecipe(props.recipe)}
           style={{
             color: '#ff9248',
-            fontSize: '12px',
+            fontSize: '1vw',
             borderColor: '#ff9248',
             padding: '5px 5px',
             textAlign: 'center'}}>

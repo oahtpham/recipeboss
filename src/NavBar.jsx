@@ -41,15 +41,16 @@ const HeaderMenu = styled.ul`
 `
 const HeaderItem = styled.li`
   padding: 0 1px 0 1px;
+  padding-right: 10px;
   text-align: center;
   box-sizing: border-box;
   list-style-type: none;
   color: #fff;
 `
 const Icon = styled.img`
-  height: 20px;
-  width: 15px;
+  height: 30px;
+  width: 25px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 18px;
+  margin: 15px;
 `

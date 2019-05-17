@@ -5,7 +5,7 @@ import Unsplash from 'unsplash-js'
 
 
 const RecipeForm = (props) => {
-  const initialFormState = {name: "", description: "", instructions: "", image: "" }
+  const initialFormState = {id: null, name: "", description: "", instructions: "", image: "" }
   const [newRecipe, setNewRecipe] = useState(initialFormState)
   const [searchResults, setSearchResults] = useState(null)
   const [clickedImage, setClickedImage] = useState(null)
