@@ -106,7 +106,8 @@ const RecipeForm = (props) => {
           fontSize: '16px',
           backgroundColor: '#ff9248',
           padding: '15px 32px',
-          textAlign: 'center'}}>
+          textAlign: 'center',
+          borderRadius: '5px'}}>
         Add a New Recipe
       </button>
     )
@@ -124,8 +125,8 @@ const RecipeForm = (props) => {
           left: '25%',
           top: '12%',
           overflow: 'auto',
-          backgroundColor: '#ff9248'
-
+          backgroundColor: '#ff9248',
+          borderRadius: '10px'
         }}>
       <br/><br/><br/>
         <button
@@ -133,7 +134,9 @@ const RecipeForm = (props) => {
           style={{
             marginLeft: '550px',
             color: 'white',
-            backgroundColor: '#ff9248'
+            fontWeight: '700',
+            backgroundColor: '#ff9248',
+            borderRadius: '3px'
           }}>
         X
         </button>
@@ -176,9 +179,11 @@ const RecipeForm = (props) => {
             style={{
               color: 'white',
               fontSize: '12px',
+              fontWeight: '700',
               backgroundColor: '#ff9248',
               padding: '10px 20px',
-              textAlign: 'center'}}
+              textAlign: 'center',
+              borderRadius: '3px'}}
           /><br/><br/><br/><br/>
         </form>
         </div>

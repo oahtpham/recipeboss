@@ -22,7 +22,8 @@ const RecipeCard = (props) => {
             fontSize: '1vw',
             borderColor: '#ff9248',
             padding: '5px 5px',
-            textAlign: 'center'}}>
+            textAlign: 'center',
+            borderRadius: '3px'}}>
           Delete Recipe
         </button>
       </CardWrapper>
