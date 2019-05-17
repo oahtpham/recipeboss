@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
-import styled from 'styled-components'
 import Unsplash from 'unsplash-js'
-
 
 
 const RecipeForm = (props) => {
@@ -102,22 +100,43 @@ const RecipeForm = (props) => {
   const button = () => {
     return (
       <button
-      onClick={handleShowForm}
-      style={{
-        color: 'white',
-        fontSize: '16px',
-        backgroundColor: '#ff9248',
-        padding: '15px 32px',
-        textAlign: 'center'}}> {showButton ? 'Hide Form' : 'Add a New Recipe' } </button>
+        onClick={handleShowForm}
+        style={{
+          color: 'white',
+          fontSize: '16px',
+          backgroundColor: '#ff9248',
+          padding: '15px 32px',
+          textAlign: 'center'}}>
+        Add a New Recipe
+      </button>
     )
   }
 
   const form = () => {
     window.scrollTo(500, 500)
     return (
-      <div>
-      {button()}
+      <div
+        style={{
+          position: 'fixed',
+          zIndex: '1',
+          width: '50%',
+          height: '80%',
+          left: '25%',
+          top: '12%',
+          overflow: 'auto',
+          backgroundColor: '#ff9248'
+
+        }}>
       <br/><br/><br/>
+        <button
+          onClick={handleShowForm}
+          style={{
+            marginLeft: '550px',
+            color: 'white',
+            backgroundColor: '#ff9248'
+          }}>
+        X
+        </button>
         <form
           onChange={handleInputChange}
           onSubmit={handleSubmit}
@@ -126,34 +145,40 @@ const RecipeForm = (props) => {
             <textarea
               name="name"
               rows="1"
-              cols="35"
+              cols="50"
               value={newRecipe.name}></textarea><br/><br/>
           <label>Description:</label><br/>
             <textarea
               name="description"
               rows="4"
-              cols= "35"
+              cols= "50"
               value={newRecipe.description}>
             </textarea><br/><br/>
           <label>Instructions:</label><br/>
             <textarea
               name="instructions"
               rows="4"
-              cols= "35"
+              cols= "50"
               value={newRecipe.instructions}>
             </textarea><br/><br/>
           <label>Search Photos on Unsplash:</label><br/>
             <textarea
               name="image"
               row="1"
-              cols="35"
+              cols="50"
               value={newRecipe.image}
               onChange={handleSearch}>
-            </textarea><br/>
+            </textarea><br/><br/>
             {searchResultsMap(searchResults)}<br/>
           <input
             type="submit"
             value="Add"
+            style={{
+              color: 'white',
+              fontSize: '12px',
+              backgroundColor: '#ff9248',
+              padding: '10px 20px',
+              textAlign: 'center'}}
           /><br/><br/><br/><br/>
         </form>
         </div>
